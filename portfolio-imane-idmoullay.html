@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imane ID-MOULLAY | Portfolio Cybersécurité & GRC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d68;
+            --accent: #00d9ff;
+            --dark: #0d1117;
+            --darker: #010409;
+            --gray: #8b949e;
+            --light-gray: #c9d1d9;
+            --surface: #161b22;
+            --surface-light: #21262d;
+            --gradient: linear-gradient(135deg, #0a4d68 0%, #05668d 50%, #00a6fb 100%);
+            --glow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--darker);
+            color: var(--light-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(180deg, var(--surface) 0%, rgba(22, 27, 34, 0.95) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: slideDown 0.8s ease-out 0.2s backwards;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideDown 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            background: var(--surface-light);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            border-color: var(--accent);
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section */
+        section {
+            margin: 4rem 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #fff;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: '# ';
+            color: var(--accent);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        .about-content strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+            border-color: var(--accent);
+        }
+
+        /* Modification : conteneur image pour projet unique (Mini-SIEM, AD) */
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: var(--surface-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Grille pour les captures multiples (Lear Audit) */
+        .project-screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin: 1rem 1rem 0 1rem;
+        }
+
+        .project-screenshots img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .project-screenshots img:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .project-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-objective {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.2rem;
+        }
+
+        .features-list li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.4rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .skills-acquired {
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .skills-acquired strong {
+            color: var(--accent);
+        }
+
+        /* Certifications Grid */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--glow);
+        }
+
+        /* Pour les images des certificats */
+        .cert-image {
+            width: 100%;
+            height: 160px;
+            background: var(--surface-light);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .cert-name {
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .cert-date {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 217, 255, 0.15);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+            text-shadow: var(--glow);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                padding: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .project-screenshots {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.5rem;
+            }
+
+            .project-screenshots img {
+                height: 100px;
+            }
+        }
+
+        /* Loading animation (optionnel, si nécessaire) */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .loading-shimmer {
+            background: linear-gradient(90deg, var(--surface-light) 0%, rgba(0, 217, 255, 0.1) 50%, var(--surface-light) 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Imane ID-MOULLAY</h1>
+        <p class="subtitle">Portfolio Cybersécurité & GRC | Étudiante ingénieure ENSIASD</p>
+        <div class="contact-buttons">
+            <a href="mailto:imaneidm904@gmail.com" class="btn">📧 Email</a>
+            <a href="https://www.linkedin.com/in/imane-id-moullay-70ba81271/" class="btn">💼 LinkedIn</a>
+            <a href="https://github.com/imaneidm/cybersecurity-projects" class="btn">💻 GitHub</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">À propos</h2>
+            <div class="about-content">
+                <p>Étudiante en <strong>2ème année du cycle ingénieur Sécurité IT & Confiance Numérique</strong> à l'ENSIASD, je suis passionnée par la <strong>gouvernance, les risques et la conformité (GRC)</strong>, les <strong>SOC</strong>, la <strong>détection d'intrusions</strong> et la <strong>sécurisation des infrastructures</strong>.</p>
+                
+                <p>Je combine des compétences <strong>techniques</strong> (SIEM, Active Directory, développement) et <strong>normatives</strong> (ISO 27001/27002/27005, analyse de risques) pour proposer des solutions de sécurité complètes et conformes aux standards internationaux.</p>
+                
+                <p>🎯 <strong>Objectif :</strong> Je recherche activement un <strong>stage PFA de 2-3 mois pour l'été 2026</strong> dans les domaines de la cybersécurité, du GRC ou des opérations de sécurité (SOC).</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projets</h2>
+            <div class="projects-grid">
+                <!-- Project 1: Mini-SIEM -->
+                <div class="project-card">
+                    <div class="project-image loading-shimmer">
+                        <img src="captures/dashboardcomplet.png" alt="Dashboard Kibana - Mini SIEM">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mini-SIEM</h3>
+                        <p class="project-objective">Système de surveillance maison générant des logs simulés, analysés et visualisés en temps réel</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">ELK Stack</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Kibana</span>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>Génération de logs réalistes (connexions, échecs, téléchargements)</li>
+                            <li>Parsing automatique avec Logstash (grok patterns)</li>
+                            <li>Stockage centralisé Elasticsearch</li>
+                            <li>Dashboard Kibana : activité temporelle, top utilisateurs, heatmap IPs</li>
+                            <li>Détection d'anomalies (force brute, pics d'activité)</li>
+                            <li>Déploiement 100% conteneurisé</li>
+                        </ul>
+
+                        <div class="skills-acquired">
+                            <strong>Compétences :</strong> SIEM, détection d'intrusion, pipeline ETL, Docker, data visualisation, scripting Node.js
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Active Directory -->
+                <div class="project-card">
+                    <div class="project-image loading-shimmer">
+                        <img src="captures/enumiration.png" alt="énumération des utilisateurs et
+groupes du domaine">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Active Directory – Sécurisation & Énumération</h3>
+                        <p class="project-objective">Déploiement d'un domaine AD Windows Server + analyse des risques par énumération</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Windows Server</span>
+                            <span class="tech-tag">PowerShell</span>
+                            <span class="tech-tag">GPO</span>
+                            <span class="tech-tag">BloodHound</span>
+                            <span class="tech-tag">Nmap</span>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>Gestion des utilisateurs, groupes, unités d'organisation (UO)</li>
+                            <li>Stratégies de groupe (GPO) pour la sécurité</li>
+                            <li>Automatisation PowerShell</li>
+                            <li>Énumération du domaine (enum4linux, nmap) → détection vulnérabilités</li>
+                            <li>Cartographie des chemins d'attaque avec BloodHound</li>
+                        </ul>
+
+                        <div class="skills-acquired">
+                            <strong>Compétences :</strong> Administration Windows, LDAP, gestion des identités, PowerShell, analyse de risques
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Lear Audit -->
+                <div class="project-card">
+                    <div class="project-screenshots">
+    <img src="captures/auditeuracceuil.png" alt="Accueil du simulateur d'audit" class="screenshot-img">
+    <img src="captures/dashboard.png" alt="Tableau de bord auditeur" class="screenshot-img">
+    <img src="captures/listescontroles.png" alt="Liste des contrôles ISO 27002" class="screenshot-img">
+    <img src="captures/loginparcode.png" alt="Connexion par code d'accès" class="screenshot-img">
+</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Lear Audit – Simulateur d'Audit ISO 2700x</h3>
+                        <p class="project-objective">Outil web interactif simulant un audit de conformité ISO 27001/27002</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+
+                        <ul class="features-list">
+                            <li>Scénarios d'audit paramétrables</li>
+                            <li>Liste des contrôles ISO 27002 (45 contrôles)</li>
+                            <li>Collecte de preuves simulée</li>
+                            <li>Évaluation de conformité (Conforme / Partiel / Non conforme) avec justification</li>
+                            <li>Analyse de risques simplifiée (gravité, probabilité) selon ISO 27005</li>
+                            <li>Tableau de bord KPIs (score global, progression, répartition)</li>
+                            <li>Génération automatique de rapport PDF</li>
+                            <li>Authentification JWT (rôles auditeur/entreprise)</li>
+                        </ul>
+
+                        <div class="skills-acquired">
+                            <strong>Compétences :</strong> GRC (ISO 27001/27002/27005), développement full-stack (MERN), architecture web, rédaction technique, gestion de projet
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                   <img src="Certifs/I2CSUpdate20260103-32-ekgj0q_page-0001.jpg" alt="Cisco Introduction to Cybersecurity" class="cert-image">
+                    <div class="cert-name">Cisco Introduction to Cybersecurity</div>
+                    <div class="cert-date">2025</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="Certifs/Junior_Cybersecurity_Analyst_Career_Path_certificate_imaneidm904-gmail-com_430b7ae5-84eb-478a-9478-02c4a54cdeb5_page-0001(1).jpg" alt="Junior_Cybersecurity_Analyst_Career_Path_certificate_" class="cert-image">
+                    <div class="cert-name">Cisco Junior Cybersecurity Analyst</div>
+                    <div class="cert-date">2025</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="ilovepdf_pages-to-jpg/domaine1.jpg" alt="..." class="cert-image">
+                    <div class="cert-name">CC Domain 1: Security Principles</div>
+                    <div class="cert-date">Janvier 2026</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="ilovepdf_pages-to-jpg/domaine2.jpg" alt="..." class="cert-image">
+                    <div class="cert-name">CC Domain 2: Incident Response, BC & DR</div>
+                    <div class="cert-date">Janvier 2026</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="ilovepdf_pages-to-jpg/domaine3.jpg" alt="..." class="cert-image">
+                    <div class="cert-name">CC Domain 3: Access Control Concepts</div>
+                    <div class="cert-date">Janvier 2026</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="ilovepdf_pages-to-jpg/domaine4.jpg" alt="..." class="cert-image">
+                    <div class="cert-name">CC Domain 4: Network Security</div>
+                    <div class="cert-date">Janvier 2026</div>
+                </div>
+
+                <div class="cert-card">
+                    <img src="ilovepdf_pages-to-jpg/domaine5.jpg" alt="..." class="cert-image">
+                    <div class="cert-name">CC Domain 5: Security Operations</div>
+                    <div class="cert-date">Janvier 2026</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Compétences</h2>
+            <div class="skills-categories">
+                <div class="skill-category">
+                    <h3>🛡️ GRC & Conformité</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ISO 27001</span>
+                        <span class="skill-tag">ISO 27002</span>
+                        <span class="skill-tag">ISO 27005</span>
+                        <span class="skill-tag">Analyse de risques</span>
+                        <span class="skill-tag">BIA</span>
+                        <span class="skill-tag">RTO/RPO</span>
+                        <span class="skill-tag">Conformité</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔍 SOC & SIEM</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Wazuh</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">Détection d'incidents</span>
+                        <span class="skill-tag">MITRE ATT&CK</span>
+                        <span class="skill-tag">Analyse de logs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔐 Active Directory</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Administration AD</span>
+                        <span class="skill-tag">GPO</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">Énumération</span>
+                        <span class="skill-tag">BloodHound</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>💻 Développement</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🌐 Réseaux</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">DNS</span>
+                        <span class="skill-tag">VPN</span>
+                        <span class="skill-tag">Pare-feu</span>
+                        <span class="skill-tag">DHCP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="mailto:imaneidm904@gmail.com" class="footer-link">Email</a>
+            <a href="https://www.linkedin.com/in/imane-id-moullay-70ba81271/" class="footer-link">LinkedIn</a>
+            <a href="https://github.com/imaneidm/cybersecurity-projects" class="footer-link">GitHub</a>
+        </div>
+        <p class="copyright">© 2026 Imane ID-MOULLAY | Portfolio Cybersécurité & GRC</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
